@@ -21,7 +21,7 @@ type View struct {
 	ox, oy                 int
 	cx, cy                 int
 	lines                  [][]rune
-	bgColor, fgColor       Attribute
+	BgColor, FgColor       Attribute
 	selBgColor, selFgColor Attribute
 	overwrite              bool // overwrite in edit mode
 
@@ -70,8 +70,8 @@ func (v *View) setRune(x, y int, ch rune) error {
 		fgColor = v.selFgColor
 		bgColor = v.selBgColor
 	} else {
-		fgColor = v.fgColor
-		bgColor = v.bgColor
+		fgColor = v.FgColor
+		bgColor = v.BgColor
 	}
 	termbox.SetCell(v.x0+x+1, v.y0+y+1, ch,
 		termbox.Attribute(fgColor), termbox.Attribute(bgColor))
@@ -168,7 +168,7 @@ func (v *View) clearRunes() {
 	for x := 0; x < maxX; x++ {
 		for y := 0; y < maxY; y++ {
 			termbox.SetCell(v.x0+x+1, v.y0+y+1, ' ',
-				termbox.Attribute(v.fgColor), termbox.Attribute(v.bgColor))
+				termbox.Attribute(v.FgColor), termbox.Attribute(v.BgColor))
 		}
 	}
 }
